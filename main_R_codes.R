@@ -29,11 +29,6 @@ sampleBlogs <- blogs[sample(1:length(blogs), portion*length(blogs))]
 sampleNews <- news[sample(1:length(news), portion*length(news))]
 sampleTwitter <- twitter[sample(1:length(twitter), portion*length(twitter))]
 
-# Remove unconvention/funny characters for sampled Blogs/News/Twitter
-# sampleBlogs <- iconv(sampleBlogs, "UTF-8", "ASCII", sub="")
-# sampleNews <- iconv(sampleNews, "UTF-8", "ASCII", sub="")
-# sampleTwitter <- iconv(sampleTwitter, "UTF-8", "ASCII", sub="")
-
 sampleData <- c(sampleBlogs,sampleNews,sampleTwitter)
 writeLines(sampleData, "./samples/sampleData.txt")
 
@@ -50,16 +45,6 @@ build_corpus <- function (x = sampleData) {
 }
 
 corpusData <- build_corpus(sampleData)
-
-# tokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
-# tdm_1gram <- TermDocumentMatrix(corpusData, control = list(tokenize = tokenizer))
-# tokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
-# tdm_2gram <- TermDocumentMatrix(corpusData, control = list(tokenize = tokenizer))
-# tokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
-# tdm_3gram <- TermDocumentMatrix(corpusData, control = list(tokenize = tokenizer))
-# tokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 4, max = 4))
-# tdm_4gram <- TermDocumentMatrix(corpusData, control = list(tokenize = tera.tokenizer))
-# remove(tokenizer)
 
 # Define function to make N grams
 tdm_Ngram <- function (textcp, n) {
